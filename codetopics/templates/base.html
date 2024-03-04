@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> {% block title %} CodeTopics {% endblock %}</title>
+    </head>
+<body>
+    {% include 'navbar.html' %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>

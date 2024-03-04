@@ -1,0 +1,37 @@
+<div>
+    {% url 'index' as index_url %}
+    <span>{%if request.path == index_url %}Home{% else %}<a href="{% url 'index' %}">Home</a>{% endif %}</span>
+    
+    {% url 'web' as web_url %}
+    <span>{%if request.path == web_url %}Web{% else %}<a href="{% url 'web' %}">Web</a>{% endif %}</span>
+
+    {% url 'mobile' as mobile_url %}
+    <span>{%if request.path == mobile_url %}Mobile{% else %}<a href="{% url 'mobile' %}">Mobile</a>{% endif %}</span>
+
+    {% url 'Embedded' as Embedded_url %}
+    <span>{%if request.path == Embedded_url %}Embedded{% else %}<a href="{% url 'Embedded' %}">Embedded</a>{% endif %}</span>
+
+    {% url 'Math' as Math_url %}
+    <span>{%if request.path == Math_url %}Math{% else %}<a href="{% url 'Math' %}">Math</a>{% endif %}</span>
+
+    {% url 'OOP_functional' as OOP_functional_url %}
+    <span>{%if request.path == OOP_functional_url %}OOP/Functional{% else %}<a href="{% url 'OOP_functional' %}">OOP/Functional</a>{% endif %}</span>
+
+    {% url 'operating_system' as operating_system_url %}
+    <span>{%if request.path == operating_system_url %}Operating System{% else %}<a href="{% url 'operating_system' %}">Operating System</a>{% endif %}</span>
+
+    {% url 'languages' as languages_url %}
+    <span>{%if request.path == languages_url %}Languages{% else %}<a href="{% url 'languages' %}">Languages</a>{% endif %}</span>
+
+    {% url 'ds_alg' as ds_alg_url %}
+    <span>{%if request.path == ds_alg_url %}Data Structures & Algorithms{% else %}<a href="{% url 'ds_alg' %}">Data Structures & Algorithms</a>{% endif %}</span>
+
+    <span style="float:right">
+        {% if user.is_authenticated %}
+            <span> Hi {{user.username}}!</span>
+            <span><a href="{% url 'login' %}">Different Account?</a></span>
+        {% else %}
+            <span><a href="{% url 'login' %}">Different Account?</a></span>
+        {% endif %}
+    </span>
+</div>
