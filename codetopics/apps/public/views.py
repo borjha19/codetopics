@@ -1,7 +1,15 @@
 from django.shortcuts import render
+from codetopics.apps.accounts.models import profile
+from django.contrib.auth.models import User
 
 def index(request):
-    return render(request, 'index.html')
+    if request.user.is_authenticated:
+        Profile = profile.objects.get(id=(request.user.id))
+        interests = Profile.interests.all()
+        return render(request, 'index.html', {'Interests': interests})
+    else:
+        return render(request, 'index.html')
+
 
 def web(request):
     return render(request, 'Web.html')
