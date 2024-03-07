@@ -1,37 +1,32 @@
-<div>
-    {% url 'index' as index_url %}
-    <span>{%if request.path == index_url %}Home{% else %}<a href="{% url 'index' %}">Home</a>{% endif %}</span>
-    
-    {% url 'web' as web_url %}
-    <span>{%if request.path == web_url %}Web{% else %}<a href="{% url 'web' %}">Web</a>{% endif %}</span>
+<!-- Navigation-->
 
-    {% url 'mobile' as mobile_url %}
-    <span>{%if request.path == mobile_url %}Mobile{% else %}<a href="{% url 'mobile' %}">Mobile</a>{% endif %}</span>
-
-    {% url 'Embedded' as Embedded_url %}
-    <span>{%if request.path == Embedded_url %}Embedded{% else %}<a href="{% url 'Embedded' %}">Embedded</a>{% endif %}</span>
-
-    {% url 'Math' as Math_url %}
-    <span>{%if request.path == Math_url %}Math{% else %}<a href="{% url 'Math' %}">Math</a>{% endif %}</span>
-
-    {% url 'OOP_functional' as OOP_functional_url %}
-    <span>{%if request.path == OOP_functional_url %}OOP/Functional{% else %}<a href="{% url 'OOP_functional' %}">OOP/Functional</a>{% endif %}</span>
-
-    {% url 'operating_system' as operating_system_url %}
-    <span>{%if request.path == operating_system_url %}Operating System{% else %}<a href="{% url 'operating_system' %}">Operating System</a>{% endif %}</span>
-
-    {% url 'languages' as languages_url %}
-    <span>{%if request.path == languages_url %}Languages{% else %}<a href="{% url 'languages' %}">Languages</a>{% endif %}</span>
-
-    {% url 'ds_alg' as ds_alg_url %}
-    <span>{%if request.path == ds_alg_url %}Data Structures & Algorithms{% else %}<a href="{% url 'ds_alg' %}">Data Structures & Algorithms</a>{% endif %}</span>
-
-    <span style="float:right">
-        {% if user.is_authenticated %}
-            <span> Hi {{user.username}}!</span>
-            <span><a href="{% url 'login' %}">Different Account?</a></span>
-        {% else %}
-            <span><a href="{% url 'login' %}">Different Account?</a></span>
-        {% endif %}
-    </span>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+    <div class="container px-5">
+        <a class="navbar-brand" href="{% url 'public:index' %}"><span class="fw-bolder text-primary">CodeTopics</span></a>
+        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                {% url 'public:index' as index_url %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'public:index' %}">Home</a></li>
+                {% url 'public:web' as web_url %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'public:web' %}">Web</a></li>
+                {% url 'public:mobile' as mobile_url %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'public:mobile' %}">Mobile</a></li>
+                {% url 'public:Embedded' as Embedded_url %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'public:Embedded' %}">Embedded</a></li>
+                {% url 'public:ds_alg' as ds_alg_url %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'public:ds_alg' %}">Data Structures & Algorithms</a></li>
+                {% url 'public:languages' as languages_url %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'public:languages' %}">Languages</a></li>
+                <span>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:upload' %}">Upload</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
+                    {% endif %}
+                </span>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,66 @@
+version: "3.9"
+
+x-service-volumes: &service-volumes
+  - ./:/app/:rw,cached
+
+x-database-variables: &database_variables
+  POSTGRES_DB: postgres
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
+x-app-variables: &app-variables
+  <<: *database_variables
+  POSTGRES_HOST: postgres
+
+services:
+  website:
+    image: codetopics
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes: *service-volumes
+    environment: *app-variables
+    depends_on:
+      - "db_migrate"
+      - "event-sourcing"
+    ports:
+      - "8000:8000"
+
+  db_migrate:
+    image: codetopics
+    command: python manage.py migrate
+    volumes: *service-volumes
+    environment: *app-variables
+
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment: *database_variables
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  event-sourcing:
+    build:
+      context: .
+    volumes: 
+      - .:/code
+    environment:
+      - DJANGO_SETTINGS_MODULE=codetopics.settings
+
+  app-sync:
+    build:
+      context: .
+    environment:
+      AWS_REGION: 'us-west-1'
+      AWS_APPSYNC_API_KEY: 'da2-y43mvtfoq5c6xcxashajzdog3e'
+      AWS_APPSYNC_API_URL: 'https://z6glsv2zh5fu3evahdbneb775m.appsync-api.us-west-2.amazonaws.com/graphql'
+      AWS_APPSYNC_API_REGION: 'us-west-2'
+    ports:
+      - "4000:4000"
+
+volumes:
+  db-data:
+    
+
+
+
+

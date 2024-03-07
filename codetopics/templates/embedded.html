@@ -1,9 +1,55 @@
 {% extends 'base.html' %}
 
-{% block title %}Embedded Development{% endblock %}
+{% block title %}Data Structures & Algorithms{% endblock %}
 
 {% block content %}
-<h1>
-    Embedded Development
-</h1>
+<!DOCTYPE html>
+<main class="flex-shrink-0">
+    <!-- Page Content-->
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Embedded Development</span></h1>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder mb-0">Recent Uploads</h2>
+            <a class="btn btn-primary px-4 py-3" href="#!">
+                <div class="d-inline-block bi bi-download me-2"></div>
+                Download</a>
+        </div>
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <!--Recent articles/videos of CS content-->
+            <div class="card-body p-5">Content</div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder mb-0">Filter</h2>
+            <div class="filter-buttons">
+                <label class="filter-button">
+                    <input type="checkbox" name="filter" value="category1">
+                    Operating Systems
+                </label>
+                <label class="filter-button">
+                    <input type="checkbox" name="filter" value="category2">
+                    Assembly
+                </label>
+                <label class="filter-button">
+                    <input type="checkbox" name="filter" value="category2">
+                    Command Line
+                </label>
+                <label class="filter-button">
+                    <input type="checkbox" name="filter" value="category2">
+                    Processor
+                </label>
+                <label class="filter-button">
+                    <input type="checkbox" name="filter" value="category2">
+                    Memory
+                </label>
+            </div>
+        </div>
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <!--Recent articles/videos of CS content-->
+            <div class="card-body p-5">Content</div>
+        </div>
+    </div>
+</main>
+</html>
 {% endblock %}
