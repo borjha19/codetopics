@@ -11818,4 +11818,28 @@ html {
   background-color: #ddd;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
+.radius {
+  border-radius: 5vw;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link {
+  border-bottom: 2px solid transparent;
+  transition: border-bottom .2s, color .2s;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link:hover {
+  color: none;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link:focus {
+  border-bottom: #0056b3;
+}
+.highlight {
+  background: none
+}
+
 }

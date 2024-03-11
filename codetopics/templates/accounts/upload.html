@@ -3,7 +3,16 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h2>
-    Upload
-</h2>
+<main class="flex-shrink-0">
+    <div class="container px-5 my-5">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder mb-0">Uploads</h2>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}                
+            <button type="submit" name="submit">Submit</button>
+        </form>
+    </div>
+</main>
 {% endblock %}

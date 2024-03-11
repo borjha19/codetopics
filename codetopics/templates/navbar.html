@@ -3,30 +3,27 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
     <div class="container px-5">
         <a class="navbar-brand" href="{% url 'public:index' %}"><span class="fw-bolder text-primary">CodeTopics</span></a>
-        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                {% url 'public:index' as index_url %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'public:index' %}">Home</a></li>
-                {% url 'public:web' as web_url %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'public:web' %}">Web</a></li>
-                {% url 'public:mobile' as mobile_url %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'public:mobile' %}">Mobile</a></li>
-                {% url 'public:Embedded' as Embedded_url %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'public:Embedded' %}">Embedded</a></li>
-                {% url 'public:ds_alg' as ds_alg_url %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'public:ds_alg' %}">Data Structures & Algorithms</a></li>
-                {% url 'public:languages' as languages_url %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'public:languages' %}">Languages</a></li>
-                <span>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:upload' %}">Upload</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:index' %}">Home</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:web' %}">Web</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:mobile' %}">Mobile</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:Embedded' %}">Embedded</a></li>    
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:ds_alg' %}">Data Structures & Algorithms</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:languages' %}">Languages</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'accounts:upload' %}">Upload</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'accounts:logout' %}">Logout</a></li>
                     {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:index' %}" id="home">Home</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:web' %}">Web</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:mobile' %}">Mobile</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:Embedded' %}">Embedded</a></li>    
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:ds_alg' %}">Data Structures & Algorithms</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'public:languages' %}">Languages</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'accounts:login' %}">Login</a></li>
                     {% endif %}
-                </span>
-            </ul>
-        </div>
+                </ul>
+            </div>
     </div>
 </nav>

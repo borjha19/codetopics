@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from codetopics.apps.accounts.models import profile
 from django.contrib.auth.models import User
+from codetopics.apps.accounts.forms import UploadForm
 
 def index(request):
     if request.user.is_authenticated:
@@ -12,7 +13,10 @@ def index(request):
 
 
 def web(request):
-    return render(request, 'Web.html')
+    if request.user.is_authenticated:  
+        return render(request, 'Web.html')
+    else:
+        return render(request, 'Web.html')
 
 def mobile(request):
     return render(request, 'mobile.html')

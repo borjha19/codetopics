@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'codetopics.apps.accounts',
+    'codetopics.apps.public',
 
 ]
 
@@ -139,4 +140,5 @@ LOGIN_REDIRECT_URL="public:index"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PERSISTENCE_MODULE = 'eventsourcing_django'
+
 
