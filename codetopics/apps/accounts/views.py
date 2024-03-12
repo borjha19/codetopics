@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from codetopics.apps.accounts.forms import UploadForm
-from codetopics.apps.public.models import recentQuery
+from codetopics.apps.accounts.models import recentQuery, VideoUploadedEvent, PhotoUploadedEvent, ArticleUploadedEvent, profile
 
 
 def profile(request):
@@ -16,24 +16,57 @@ def upload(request):
                 title = form.cleaned_data["title"]
                 category = form.cleaned_data["category"]
 
+                profileId = request.user.id
                 query = recentQuery()
-                query.register_upload(url=url)
+                query.register_upload(profileId=profileId)
                 if media == '1':
-                    query.add_video(url=url, title=title, category=category)
+                    query.add_video(url=url, profileId=profileId, title=title, category=category)
                 elif media == '2':
-                    query.add_photo(url=url, title=title, category=category)
+                    query.add_photo(url=url, profileId=profileId, title=title,category=category)
                 elif media == '3':
-                    query.add_article(url=url, title=title, category=category)
-
-                               
+                    query.add_article(url=url, profileId=profileId, title=title, category=category)
+                    
+                list = query.get_events(profileId)
                 if category =='1':
-                    return redirect('http://127.0.0.1:8000/web')
+                    web_list = []
+                    
+                    for obj in list:
+                        if obj.category == '1':
+                            web_list.append(obj)
+            
+                    return render(request, 'Web.html', {'web_list':web_list})
                 elif category == '2':
-                    return redirect('http://127.0.0.1:8000/Embedded')
+                    mobile_list = []
+                    
+                    for obj in list:
+                        if obj.category == '2':
+                            mobile_list.append(obj)
+            
+                    return render(request, 'mobile.html', {'mobile_list':mobile_list})
                 elif category == '3':
-                    return redirect('http://127.0.0.1:8000/ds_alg')
+                    Embedded_list = []
+                    
+                    for obj in list:
+                        if obj.category == '3':
+                            web_list.append(obj)
+            
+                    return render(request, 'Embedded.html', {'Embedded_list':Embedded_list})
+                elif category == '4':
+                    ds_list = []
+                    
+                    for obj in list:
+                        if obj.category == '4':
+                            ds_list.append(obj)
+            
+                    return render(request, 'ds_alg.html', {'ds_list':ds_list})
                 else:
-                    return redirect('http://127.0.0.1:8000/languages')
+                    languages_list = []
+                    
+                    for obj in list:
+                        if obj.category == '5':
+                            languages_list.append(obj)
+            
+                    return render(request, 'languages.html', {'languages_list':languages_list})
 
         else:
             return render(request, 'accounts/upload.html', {'form':form})
