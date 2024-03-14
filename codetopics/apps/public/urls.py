@@ -10,4 +10,5 @@ urlpatterns = [
     path('Embedded', views.Embedded, name="Embedded"),
     path('ds_alg', views.ds_alg, name="ds_alg"),
     path('languages', views.languages, name="languages"),
+
 ]

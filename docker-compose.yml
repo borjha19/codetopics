@@ -1,8 +1,10 @@
 version: "3.9"
 
+#volume options to keep map current dir to container dir, and enables read/write
 x-service-volumes: &service-volumes
   - ./:/app/:rw,cached
 
+#sets environment to connect to PostgreSQL
 x-database-variables: &database_variables
   POSTGRES_DB: postgres
   POSTGRES_USER: postgres
@@ -12,6 +14,7 @@ x-app-variables: &app-variables
   <<: *database_variables
   POSTGRES_HOST: postgres
 
+#services and containers
 services:
   website:
     image: codetopics
@@ -21,12 +24,14 @@ services:
     depends_on:
       - "db_migrate"
       - "event-sourcing"
+    #maps host port to container port
     ports:
       - "8000:8000"
 
   db_migrate:
+  #migrates and keeps database schema in sync with django models
     image: codetopics
-    command: python manage.py migrate
+    command: python manage.py makemigrations
     volumes: *service-volumes
     environment: *app-variables
 
@@ -35,6 +40,7 @@ services:
     ports:
       - "5432:5432"
     environment: *database_variables
+    #persists dat in /var..
     volumes:
       - db-data:/var/lib/postgresql/data
 
@@ -42,23 +48,14 @@ services:
     build:
       context: .
     volumes: 
-      - .:/code
+      - events:/var/lib/event-sourcing/data
     environment:
       - DJANGO_SETTINGS_MODULE=codetopics.settings
 
-  app-sync:
-    build:
-      context: .
-    environment:
-      AWS_REGION: 'us-west-1'
-      AWS_APPSYNC_API_KEY: 'da2-y43mvtfoq5c6xcxashajzdog3e'
-      AWS_APPSYNC_API_URL: 'https://z6glsv2zh5fu3evahdbneb775m.appsync-api.us-west-2.amazonaws.com/graphql'
-      AWS_APPSYNC_API_REGION: 'us-west-2'
-    ports:
-      - "4000:4000"
 
 volumes:
   db-data:
+  events:
     
 
 

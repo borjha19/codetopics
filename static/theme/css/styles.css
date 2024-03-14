@@ -11832,14 +11832,15 @@ html {
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link:hover {
-  color: none;
+  color: green;
 }
 
-#mainNav .navbar-nav li.nav-item a.nav-link:focus {
-  border-bottom: #0056b3;
+#mainNav .navbar-nav li.nav-item a.nav-link:active {
+  border-bottom: 2px solid black;
 }
 .highlight {
-  background: none
+  border-bottom: 2px solid black;
+
 }
 
 }
