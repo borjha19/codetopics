@@ -22,8 +22,8 @@ services:
     volumes: *service-volumes
     environment: *app-variables
     depends_on:
-      - "db_migrate"
       - "event-sourcing"
+      - "db_migrate"
     #maps host port to container port
     ports:
       - "8000:8000"
@@ -31,7 +31,7 @@ services:
   db_migrate:
   #migrates and keeps database schema in sync with django models
     image: codetopics
-    command: python manage.py makemigrations
+    command: python manage.py migrate
     volumes: *service-volumes
     environment: *app-variables
 
@@ -40,7 +40,7 @@ services:
     ports:
       - "5432:5432"
     environment: *database_variables
-    #persists dat in /var..
+    #persists data in /var..
     volumes:
       - db-data:/var/lib/postgresql/data
 

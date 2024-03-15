@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'codetopics.apps.accounts',
     'codetopics.apps.public',
+    'eventsourcing_django',
 ]
 
 MIDDLEWARE = [
@@ -138,10 +139,3 @@ LOGIN_REDIRECT_URL="public:index"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-PERSISTENCE_MODULE = 'eventsourcing_django'
-
-GRAPHENE = {
-    "SCHEMA": "django_root.schema.schema"
-}
-
-
